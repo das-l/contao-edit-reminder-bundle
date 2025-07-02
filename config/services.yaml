@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    DasL\ContaoEditReminderBundle\:
+        resource: ../src
+        exclude: ../src/{ContaoManager,DependencyInjection}
+
+    DasL\ContaoEditReminderBundle\Cron\SendEditReminderCron:
+        arguments:
+            $tables: '%contao_edit_reminder.tables%'
+    DasL\ContaoEditReminderBundle\EventListener\DataContainer\AddEditReminderFieldsListener:
+        arguments:
+            $tables: '%contao_edit_reminder.tables%'
+    DasL\ContaoEditReminderBundle\NotificationType\EditReminderRemindNotificationType:
+        tags:
+            - 'notification_center.notification_type'

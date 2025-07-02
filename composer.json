@@ -1,0 +1,69 @@
+{
+    "name": "das-l/contao-edit-reminder-bundle",
+    "description": "Sends a message, after a configurable time period, to the last user who edited an item.",
+    "type": "contao-bundle",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Alex Wuttke",
+            "homepage": "https://das-l.de",
+            "email": "alex@das-l.de"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/das-l/contao-edit-reminder-bundle/issues",
+        "source": "https://github.com/das-l/contao-edit-reminder-bundle"
+    },
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^5.3",
+        "doctrine/dbal": "^3.9",
+        "symfony/config": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/http-kernel": "^6.4",
+        "symfony/translation-contracts": "^3.5",
+        "das-l/contao-last-editor-bundle": "^1.0",
+        "terminal42/notification_center": "^2.5"
+    },
+    "autoload":{
+        "psr-4": {
+            "DasL\\ContaoEditReminderBundle\\": "src/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@rector-dry",
+            "@ecs-check"
+        ],
+        "apply": [
+            "@rector-process",
+            "@ecs-fix"
+        ],
+        "rector-process": "vendor/bin/rector process --ansi",
+        "rector-dry": "vendor/bin/rector process --dry-run --ansi",
+        "ecs-check": "vendor/bin/ecs check --ansi",
+        "ecs-fix": "vendor/bin/ecs check --fix --ansi"
+    },
+    "extra":{
+        "contao-manager-plugin": "DasL\\ContaoEditReminderBundle\\ContaoManager\\Plugin"
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "php-http/discovery": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "contao/manager-plugin": true,
+            "contao-community-alliance/composer-plugin": true
+        }
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "@stable",
+        "contao/easy-coding-standard": "@stable",
+        "rector/rector": "@stable",
+        "phpstan/phpstan": "@stable",
+        "contao/rector": "dev-main"
+    }
+}
